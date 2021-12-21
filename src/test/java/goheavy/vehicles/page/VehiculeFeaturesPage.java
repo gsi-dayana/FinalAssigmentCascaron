@@ -1,7 +1,6 @@
 package goheavy.vehicles.page;
 
 import org.openqa.selenium.By;
-import general.PageObject;
 import general.Setup;
 
 import java.util.concurrent.ThreadLocalRandom;
@@ -75,7 +74,7 @@ public class VehiculeFeaturesPage extends TabsPage {
         setImage(getWebElement(By.xpath(getVehiclePhotoImageXpath())), null);
 
         clickOn(getWebElement(By.xpath("//button[@type='submit']/descendant::span[text()='Next']")));
-        waitForSpinningElementDissapear();
+        waitForSpinningElementDisappear();
         Setup.getWait().thread(1500);
     }
     public boolean systemOpensAddVehicleView() {

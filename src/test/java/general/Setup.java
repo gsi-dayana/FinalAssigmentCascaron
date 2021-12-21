@@ -107,7 +107,6 @@ public final class Setup {
 	 */
 	public static void openUrl(String url) {
 		driver.get(url);
-		//waitingObject.waitForLoading(3600);
 	}
 
 	@After

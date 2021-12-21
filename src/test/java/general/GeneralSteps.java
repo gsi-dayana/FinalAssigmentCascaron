@@ -77,7 +77,7 @@ public class GeneralSteps extends PageObject {
     }
 
     private void waitForSpinnerToDissapear() {
-        waitForSpinningElementDissapear();
+        waitForSpinningElementDisappear();
     }
 
     public void logoutProcess() throws Exception {
@@ -115,4 +115,6 @@ public class GeneralSteps extends PageObject {
             vehicleStep.checkPage();
         }
     }
+
+
 }

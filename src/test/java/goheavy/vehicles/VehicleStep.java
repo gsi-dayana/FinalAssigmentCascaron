@@ -1,28 +1,23 @@
 package goheavy.vehicles;
 
-import javafx.scene.control.TabPane;
 import org.junit.Assert;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
 import general.Setup;
 import general.Steps;
-import goheavy.driver.pages.DriverPage;
 import goheavy.vehicles.page.*;
 
 @SuppressWarnings("unused")
 public class VehicleStep extends Steps {
     public VehiclePage vehiclePage;
     public VehiculeInfoPage vehicleInfo;
-    public VehiculeFeaturesPage vehicleFeture;
+    public VehiculeFeaturesPage vehicleFeature;
     public DrivingRequirementsPage drivingRequirements;
     private TabsPage tp;
 
     public VehicleStep() {
         vehiclePage = new VehiclePage();
         vehicleInfo = new VehiculeInfoPage();
-        vehicleFeture = new VehiculeFeaturesPage();
+        vehicleFeature = new VehiculeFeaturesPage();
         drivingRequirements = new DrivingRequirementsPage();
 
     }
