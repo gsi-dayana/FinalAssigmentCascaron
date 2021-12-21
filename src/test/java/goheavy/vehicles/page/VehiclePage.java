@@ -1,20 +1,13 @@
 package goheavy.vehicles.page;
 
-import java.text.DateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.Set;
-import java.util.concurrent.ThreadLocalRandom;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver.Timeouts;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import general.PageObject;
 import general.Setup;
@@ -155,7 +148,7 @@ public class VehiclePage extends PageObject {
 
     public boolean goToVehiclesAndInsuranceListView() {
         try {
-            waitForSpinningElementDissapear();
+            waitForSpinningElementDisappear();
             Setup.getWait().thread(1500);
             WebElement element = getWebElement(By.xpath(getVehiclesLiXpath()));
             clickOn(element);
@@ -167,7 +160,7 @@ public class VehiclePage extends PageObject {
 
     public boolean clickOnAddVehicleButton() {
         try {
-            waitForSpinningElementDissapear();
+            waitForSpinningElementDisappear();
             Setup.getWait().thread(3000);
             WebElement element = getWebElement(By.xpath(getAddVehicleButtonXpath()));
             clickOn(element);
@@ -179,7 +172,7 @@ public class VehiclePage extends PageObject {
 
     public boolean systemOpensAddVehicleView() {
         Setup.getWait().thread(5000);
-        waitForSpinningElementDissapear();
+        waitForSpinningElementDisappear();
 
         try {
             Assert.assertNotNull("Page Title not found", getPageElementBy(By.xpath(getAddVehicleTitleXpath())));
@@ -206,7 +199,7 @@ public class VehiclePage extends PageObject {
 
 
     private void checkVehicleTypeComponentBehaviour() {
-        waitForSpinningElementDissapear();
+        waitForSpinningElementDisappear();
         try {
             Setup.getWait().thread(150);
             clickOn(getWebElement(By.xpath(getVehicleTypeXpath())));
@@ -229,7 +222,7 @@ public class VehiclePage extends PageObject {
     }
 
     public boolean checkStep(WebElement element, String step, String stepName) {
-        waitForSpinningElementDissapear();
+        waitForSpinningElementDisappear();
         String numberXpath = "//span[@class='ant-steps-icon' and text()='" + step + "']";
         String titleXpath = "//div[@class='ant-steps-item-title' and text()='" + stepName + "']";
 
@@ -284,7 +277,7 @@ public class VehiclePage extends PageObject {
 
     public WebElement systemCreatesVehicleOnStatus(String status) {
         try {
-            waitForSpinningElementDissapear();
+            waitForSpinningElementDisappear();
             Setup.getActions().sendKeys(getWebElement(By.xpath(""
                             + "//input[@placeholder='Search...' and @type='text' and @class='ant-input']")),
                     (String) Setup.getValueStore("vehicleMake")).build().perform();
@@ -305,7 +298,7 @@ public class VehiclePage extends PageObject {
     }
 
     public WebElement systemsRegistersCreationDate() {
-        waitForSpinningElementDissapear();
+        waitForSpinningElementDisappear();
         try {
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
             String date_compare = dtf.format(LocalDateTime.now());
@@ -320,7 +313,7 @@ public class VehiclePage extends PageObject {
 
     public boolean systemDisplaysAssignView() {
         Setup.getWait().thread(3000);
-        waitForSpinningElementDissapear();
+        waitForSpinningElementDisappear();
         try {
             String xpath = "//div[text()='Assign Vehicle' and @class='ant-modal-title']";
             WebElement alert = getWebElement(By.xpath(xpath));
@@ -333,7 +326,7 @@ public class VehiclePage extends PageObject {
 
     public boolean userAssignsTheVehicle() {
         Setup.getWait().thread(3000);
-        waitForSpinningElementDissapear();
+        waitForSpinningElementDisappear();
         try {
             Setup.getActions().moveToElement(getWebElement(By.xpath("//input[@placeholder='Please, select a option']"))).
                     build().perform();
@@ -361,13 +354,13 @@ public class VehiclePage extends PageObject {
     public void clicks_button_done() {
         clickOn(getWebElement(By.xpath("//button[@type='submit']")));
 
-        waitForSpinningElementDissapear();
+        waitForSpinningElementDisappear();
 
     }
 
     public void systemDisplaysMessage(String message) {
         try {
-            waitForSpinningElementDissapear();
+            waitForSpinningElementDisappear();
             String xpath = "//div[@class='ant-notification ant-notification-topRight']";
             WebElement alert = getWebElement(By.xpath(xpath));
             Assert.assertEquals(alert.getText(), message);
@@ -378,7 +371,7 @@ public class VehiclePage extends PageObject {
     }
 
     public boolean hoverOverImageComponent() {
-        waitForSpinningElementDissapear();
+        waitForSpinningElementDisappear();
         try {
             setImage(getWebElement(By.xpath(getVINImageUploadItemXpath())), null);
             Setup.getWait().thread(500);

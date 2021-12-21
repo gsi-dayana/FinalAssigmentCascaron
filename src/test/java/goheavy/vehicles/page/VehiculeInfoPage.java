@@ -215,7 +215,7 @@ public class VehiculeInfoPage extends TabsPage {
     }
 
     private void checkVehicleTypeComponentBehaviour() {
-        waitForSpinningElementDissapear();
+        waitForSpinningElementDisappear();
         try {
             Setup.getWait().thread(150);
             clickOn(getWebElement(By.id(getVehicleTypeID())));
@@ -284,7 +284,7 @@ public class VehiculeInfoPage extends TabsPage {
         scrollToWebElement(null, getFormScroll());
 
         clickOn(getWebElement(By.xpath("//button[@type='submit']/descendant::span[text()='Next']")));
-        waitForSpinningElementDissapear();
+        waitForSpinningElementDisappear();
         Setup.getWait().thread(1500);
 
     }
@@ -304,7 +304,7 @@ public class VehiculeInfoPage extends TabsPage {
 
     public boolean systemOpensAddVehicleView() {
         Setup.getWait().thread(5000);
-        waitForSpinningElementDissapear();
+        waitForSpinningElementDisappear();
 
         try {
             Assert.assertNotNull("Page Title not found", getPageElementBy(By.xpath(getAddVehicleTitleXpath())));

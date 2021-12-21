@@ -121,7 +121,7 @@ public class PageObject {
 
     protected void cliksOnButton(By by) {
         getWebElement(by).click();
-        waitForSpinningElementDissapear();
+        waitForSpinningElementDisappear();
         Setup.getWait().waitForLoading((Integer) Setup.getTimeouts().get("implicit"));
     }
 
@@ -139,7 +139,7 @@ public class PageObject {
         Setup.getWait().waitForLoading((Integer) Setup.getTimeouts().get("implicit"));
     }
 
-    public void waitForSpinningElementDissapear() {
+    public void waitForSpinningElementDisappear() {
         try {
             //Setup.getWait().waitForLoading((Long) (Setup.getTimeouts().get("implicit")));
             checkSpinningAppears();
@@ -166,17 +166,20 @@ public class PageObject {
         Setup.getWait().thread(500);
     }
 
+    public WebElement getElementByID(String id) {
+        return getWebElement(By.id(id));
+    }
 
     public void clickOn(WebElement element) {
-        waitForSpinningElementDissapear();
+        waitForSpinningElementDisappear();
         Setup.getWait().thread(150);
         Setup.getActions().moveToElement(element).build().perform();
         Setup.getActions().click(element).build().perform();
-        waitForSpinningElementDissapear();
+        waitForSpinningElementDisappear();
         Setup.getWait().thread(150);
     }
 
-    public void sendDataToInput(WebElement element, String data, Keys key, String form) {
+    public void sendDataToInput(WebElement element, Object data, Keys key, String form) {
         try {
             if (element.getAttribute("value").length() > 0)
                 clear_element_text(element);
@@ -184,7 +187,7 @@ public class PageObject {
         }
         scrollToWebElement(element, form);
         if (data != null)
-            Setup.getActions().sendKeys(element, data).build().perform();
+            Setup.getActions().sendKeys(element, (CharSequence) data).build().perform();
         else
             Setup.getActions().sendKeys(element, key).build().perform();
     }
@@ -224,7 +227,7 @@ public class PageObject {
     }
 
     public HashMap<String, WebElement> getMenu(By by) {
-        waitForSpinningElementDissapear();
+        waitForSpinningElementDisappear();
         Setup.getWait().thread(4000);
         HashMap<String, WebElement> list = new HashMap<String, WebElement>();
 
@@ -237,6 +240,24 @@ public class PageObject {
             // return an array of all Menu value
         }
         return list;
+    }
+
+    public void interactAndRandomSelectFromDropDown(String id_dropdown, String id_options) {
+        try {
+            WebElement element = getWebElement(By.xpath("//input[@id='" + id_dropdown +"' and @role='combobox']"));
+            Setup.getActions().moveToElement(element).build().perform();
+            Setup.getActions().click(element).build().perform();
+            String xpath = "//div[@role='listbox' and @id='" + id_options + "']/ancestor::div[contains(@class, "
+                    + "'ant-select-dropdown')]/descendant::div[@class='ant-select-item-option-content']";
+            List<WebElement> select_elements = getWebElements(By.xpath(xpath));
+            WebElement option_element = select_elements.get(
+                    getFaker().number().numberBetween(3, 5));
+            Setup.getActions().moveToElement(option_element).build().perform();
+            Setup.getWait().thread(750);
+            Setup.getActions().click(option_element).build().perform();
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
 }
